@@ -26,12 +26,6 @@ namespace ProjectStart
 		{
 			InitializeComponent();
 		}
-
-		private void buttonLeft_Click(object sender, EventArgs e)
-		{
-
-		}
-
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
