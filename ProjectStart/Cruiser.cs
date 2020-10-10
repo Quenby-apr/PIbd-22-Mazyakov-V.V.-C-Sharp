@@ -48,7 +48,7 @@ namespace ProjectStart
         /// <param name="direction">Направление</param>
         public override void DrawTransport(Graphics g)
         {
-            Pen pen = new Pen(Brushes.Red);
+            Pen pen = new Pen(DopColor);
             pen.Width = 6.0F;
             // отрисуем сперва ракетную систему (чтобы потом отрисовкаавтомобиля на него "легла")
             if (MissileSystem)

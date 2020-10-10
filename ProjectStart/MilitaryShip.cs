@@ -100,6 +100,7 @@ namespace ProjectStart
                 Point[] curvePoints = { point1, point2, point3, point4 };
                 gr.FillPolygon(body, curvePoints);
 
+
                 Brush equip = new SolidBrush(MainColor);
                 Point rad1 = new Point((int)_startPosX + 44, (int)_startPosY - 25);
                 Point rad2 = new Point((int)_startPosX + 44, (int)_startPosY - 50);

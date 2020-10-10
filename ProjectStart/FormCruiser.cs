@@ -10,25 +10,30 @@ using System.Windows.Forms;
 
 namespace ProjectStart
 {
-	public partial class FormCruiser:Form
-	{
-		private ITransport ship;
-		private void Draw()
-		{
-			Bitmap bmp = new Bitmap(pictureBoxCruiser.Width, pictureBoxCruiser.Height);
-			Graphics gr = Graphics.FromImage(bmp);
-			ship.DrawTransport(gr);
-			pictureBoxCruiser.Image = bmp;
-		}
+    public partial class FormCruiser : Form
+    {
+        private ITransport ship;
+        public void SetShip(ITransport ship)
+        {
+            this.ship = ship;
+            Draw();
+        }
+        private void Draw()
+        {
+            Bitmap bmp = new Bitmap(pictureBoxCruiser.Width, pictureBoxCruiser.Height);
+            Graphics gr = Graphics.FromImage(bmp);
+            ship?.DrawTransport(gr);
+            pictureBoxCruiser.Image = bmp;
+        }
 
-		public FormCruiser()
-		{
-			InitializeComponent();
-		}
+        public FormCruiser()
+        {
+            InitializeComponent();
+        }
         private void buttonCreateMilShip_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new MilitaryShip (rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
+            ship = new MilitaryShip(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
             ship.SetPosition(rnd.Next(150, 200), rnd.Next(150, 200), pictureBoxCruiser.Width,
            pictureBoxCruiser.Height);
             Draw();
@@ -36,9 +41,9 @@ namespace ProjectStart
         private void buttonCreateCruiser_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Cruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray, Color.Red, true,true,true);
+            ship = new Cruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray, Color.Red, true, true, true);
             ship.SetPosition(rnd.Next(150, 200), rnd.Next(150, 200), pictureBoxCruiser.Width,
-           pictureBoxCruiser.Height);
+            pictureBoxCruiser.Height);
             Draw();
         }
         /// <summary>

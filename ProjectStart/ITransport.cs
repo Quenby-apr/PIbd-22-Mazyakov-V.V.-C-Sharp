@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ProjectStart
 {
-    interface ITransport
+    public interface ITransport
     {
         /// <summary>
         /// Установка позиции
@@ -27,6 +27,5 @@ namespace ProjectStart
         /// </summary>
         /// <param name="g"></param>
         void DrawTransport(Graphics g);
-
     }
 }
