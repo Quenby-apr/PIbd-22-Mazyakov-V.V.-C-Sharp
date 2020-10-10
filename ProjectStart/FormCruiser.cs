@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjectStart
 {
-	public partial class FormCruiser : Form
+	public partial class FormCruiser:Form
 	{
-		private Cruiser ship;
-
+		private ITransport ship;
 		private void Draw()
 		{
 			Bitmap bmp = new Bitmap(pictureBoxCruiser.Width, pictureBoxCruiser.Height);
@@ -26,11 +25,18 @@ namespace ProjectStart
 		{
 			InitializeComponent();
 		}
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void buttonCreateMilShip_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            ship = new Cruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray,
-           Color.Red, true, true, true, true,true);
+            ship = new MilitaryShip (rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
+            ship.SetPosition(rnd.Next(150, 200), rnd.Next(150, 200), pictureBoxCruiser.Width,
+           pictureBoxCruiser.Height);
+            Draw();
+        }
+        private void buttonCreateCruiser_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            ship = new Cruiser(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray, Color.Red, true,true,true);
             ship.SetPosition(rnd.Next(150, 200), rnd.Next(150, 200), pictureBoxCruiser.Width,
            pictureBoxCruiser.Height);
             Draw();
