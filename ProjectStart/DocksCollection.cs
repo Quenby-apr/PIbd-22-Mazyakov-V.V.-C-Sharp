@@ -51,7 +51,7 @@ namespace ProjectStart
         /// Удаление парковки
         /// </summary>
         /// <param name="name">Название парковки</param>
-        public void DelParking(string name)
+        public void DelDocks(string name)
         {
             if (docksStages.ContainsKey(name))
             {
@@ -75,4 +75,5 @@ namespace ProjectStart
             }
         }
     }
+
 }

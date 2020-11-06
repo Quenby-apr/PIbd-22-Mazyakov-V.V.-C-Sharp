@@ -54,22 +54,33 @@
     <Compile Include="FormCruiser.Designer.cs">
       <DependentUpon>FormCruiser.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormParking.cs" />
-    <Compile Include="FormParking.Designer.cs">
-      <DependentUpon>FormParking.cs</DependentUpon>
+    <Compile Include="FormDocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDocks.Designer.cs">
+      <DependentUpon>FormDocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormShipConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShipConfig.Designer.cs">
+      <DependentUpon>FormShipConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="ITransport.cs" />
     <Compile Include="MilitaryShip.cs" />
-    <Compile Include="Parking.cs" />
-    <Compile Include="ParkingCollection.cs" />
+    <Compile Include="Docks.cs" />
+    <Compile Include="DocksCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vehicle.cs" />
     <EmbeddedResource Include="FormCruiser.resx">
       <DependentUpon>FormCruiser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormParking.resx">
-      <DependentUpon>FormParking.cs</DependentUpon>
+    <EmbeddedResource Include="FormDocks.resx">
+      <DependentUpon>FormDocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShipConfig.resx">
+      <DependentUpon>FormShipConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

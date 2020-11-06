@@ -50,7 +50,7 @@ namespace ProjectStart
         {
             Pen pen = new Pen(DopColor);
             pen.Width = 6.0F;
-            // отрисуем сперва ракетную систему (чтобы потом отрисовкаавтомобиля на него "легла")
+            // отрисуем сперва ракетную систему (чтобы потом отрисовка на него "легла")
             if (MissileSystem)
             {
                 g.DrawLine(pen, _startPosX + 125, _startPosY - 20, _startPosX + 140, _startPosY - 30);
@@ -72,6 +72,10 @@ namespace ProjectStart
                 g.FillRectangle(equip, _startPosX + 6, _startPosY - 50, 12, 10);
                 g.FillEllipse(equip, _startPosX + 6, _startPosY - 60, 12, 10);
             }
+        }
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }

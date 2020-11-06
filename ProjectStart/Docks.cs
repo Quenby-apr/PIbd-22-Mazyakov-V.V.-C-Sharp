@@ -83,6 +83,7 @@ namespace ProjectStart
             p._places.RemoveAt(index);
             return ship;
         }
+
         /// <summary>
         /// Метод отрисовки парковки
         /// </summary>

@@ -60,7 +60,7 @@ namespace ProjectStart
         {
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
-                MessageBox.Show("Введите название доков", "Ошибка",
+                MessageBox.Show("Введите название дока", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -76,66 +76,37 @@ namespace ProjectStart
         {
             if (listBoxDocks.SelectedIndex > -1)
             {
-                if (MessageBox.Show($"Удалить доки { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
+                if (MessageBox.Show($"Удалить док { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
            MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    docksCollection.DelParking(textBoxNewLevelName.Text);
+                    docksCollection.DelDocks(textBoxNewLevelName.Text);
                     ReloadLevels();
                 }
             }
         }
+
         /// <summary>
-        /// Обработка нажатия кнопки "Припарковать автомобиль"
+        /// Обработка нажатия кнопки "Причалить корабль"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonSetMilShip_Click(object sender, EventArgs e)
         {
-            if (listBoxDocks.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var ship = new MilitaryShip(100, 1000, dialog.Color);
-                    if (docksCollection[listBoxDocks.SelectedItem.ToString()] + ship)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
+            var formShipConfig = new FormShipConfig();
+            formShipConfig.AddEvent(AddShip);
+            formShipConfig.Show();
         }
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать гоночный автомобиль"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonSetCruiser_Click(object sender, EventArgs e)
+        private void AddShip(Vehicle car)
         {
+            if (car != null && listBoxDocks.SelectedIndex > -1)
             {
-                if (listBoxDocks.SelectedIndex > -1)
+                if ((docksCollection[listBoxDocks.SelectedItem.ToString()]) + car)
                 {
-                    ColorDialog dialog = new ColorDialog();
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        ColorDialog dialogDop = new ColorDialog();
-                        if (dialogDop.ShowDialog() == DialogResult.OK)
-                        {
-                            var ship = new Cruiser(100, 1000, dialog.Color, dialogDop.Color, true, true, true);
-                            if (docksCollection[listBoxDocks.SelectedItem.ToString()] + ship)
-                            {
-                                Draw();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Парковка переполнена");
-                            }
-                        }
-
-                    }
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Корабль не удалось причалить");
                 }
             }
         }
@@ -163,5 +134,6 @@ namespace ProjectStart
         {
             Draw();
         }
+
     }
 }
