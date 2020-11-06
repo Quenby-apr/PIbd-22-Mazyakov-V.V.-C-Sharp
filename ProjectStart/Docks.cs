@@ -8,15 +8,20 @@ using System.Drawing;
 
 namespace ProjectStart
 {
-    public class Parking<T> where T : class, ITransport
+    public class Docks<T> where T : class, ITransport
     {
         /// <summary>
         /// Массив объектов, которые храним
         /// </summary>
-        private readonly T[] _places;
+        private readonly List<T> _places;
+        /// <summary>
+        /// Максимальное количество мест на парковке
+        /// </summary>
+        private readonly int _maxCount;
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
+        /// 
         private readonly int pictureWidth;
         /// <summary>
         /// Высота окна отрисовки
@@ -35,15 +40,15 @@ namespace ProjectStart
         /// </summary>
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
-        public Parking(int picWidth, int picHeight)
+        public Docks(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _places = new List<T>();
         }
-
         /// <summary>
         /// Перегрузка оператора сложения
         /// Логика действия: на парковку добавляется автомобиль
@@ -51,41 +56,33 @@ namespace ProjectStart
         /// <param name="p">Парковка</param>
         /// <param name="car">Добавляемый автомобиль</param>
         /// <returns></returns>
-        public static bool operator +(Parking<T> p, T ship)
+        public static bool operator +(Docks<T> p, T ship)
         {
-            for (int i=0; i<p._places.Length;i++)
+            if (p._places.Count >= p._maxCount)
             {
-                if (p._places[i]==null)
-                {
-                    p._places[i] = ship;
-                    ship.SetPosition(((i /7)% 3) * p._placeSizeWidth+ p._placeSizeWidth/10, (i%7)* p._placeSizeHeight+ p._placeSizeHeight, p.pictureWidth, p.pictureHeight);
-                    return true;
-                }
+                return false;
             }
-            return false;
-        }
+            p._places.Add(ship);
+            return true;
 
+        }
         /// <summary>
         /// Перегрузка оператора вычитания
         /// Логика действия: с парковки забираем автомобиль
         /// </summary>
         /// <param name="p">Парковка</param>
         /// <param name="index">Индекс места, с которого пытаемся извлечь объект</param>
- /// <returns></returns>
-        public static T operator -(Parking<T> p, int index)
+        /// <returns></returns>
+        public static T operator -(Docks<T> p, int index)
         {
-            if (index >= 0 && index < p._places.Length)
+            if (index < -1 || index > p._places.Count)
             {
-                if (p._places[index] != null)
-                {
-                    var ship = p._places[index];
-                    p._places[index] = null;
-                    return ship;
-                }
+                return null;
             }
-            return null;
+            T ship = p._places[index];
+            p._places.RemoveAt(index);
+            return ship;
         }
-
         /// <summary>
         /// Метод отрисовки парковки
         /// </summary>
@@ -93,8 +90,9 @@ namespace ProjectStart
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; i++)
             {
+                _places[i].SetPosition(((i / 7) % 3) * _placeSizeWidth + _placeSizeWidth / 10, (i % 7) * _placeSizeHeight + _placeSizeHeight, pictureWidth, pictureHeight);
                 _places[i]?.DrawTransport(g);
             }
         }

@@ -16,7 +16,7 @@ namespace ProjectStart
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormParking());
+			Application.Run(new FormDocks());
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace ProjectStart
 {
-    partial class FormParking
+    partial class FormDocks
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,11 @@
             this.LabelPlace = new System.Windows.Forms.Label();
             this.maskedTextBoxNumberPlace = new System.Windows.Forms.MaskedTextBox();
             this.labelTakeShip = new System.Windows.Forms.Label();
+            this.listBoxDocks = new System.Windows.Forms.ListBox();
+            this.labelParking = new System.Windows.Forms.Label();
+            this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
+            this.buttonCreateParking = new System.Windows.Forms.Button();
+            this.buttonDeleteParking = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -50,9 +55,9 @@
             // 
             // buttonParkMilShip
             // 
-            this.buttonParkMilShip.Location = new System.Drawing.Point(860, 10);
+            this.buttonParkMilShip.Location = new System.Drawing.Point(863, 269);
             this.buttonParkMilShip.Name = "buttonParkMilShip";
-            this.buttonParkMilShip.Size = new System.Drawing.Size(110, 48);
+            this.buttonParkMilShip.Size = new System.Drawing.Size(118, 48);
             this.buttonParkMilShip.TabIndex = 1;
             this.buttonParkMilShip.Text = "Причалить военный корабль";
             this.buttonParkMilShip.UseVisualStyleBackColor = true;
@@ -60,9 +65,9 @@
             // 
             // buttonParkCruiser
             // 
-            this.buttonParkCruiser.Location = new System.Drawing.Point(860, 64);
+            this.buttonParkCruiser.Location = new System.Drawing.Point(863, 323);
             this.buttonParkCruiser.Name = "buttonParkCruiser";
-            this.buttonParkCruiser.Size = new System.Drawing.Size(109, 53);
+            this.buttonParkCruiser.Size = new System.Drawing.Size(118, 53);
             this.buttonParkCruiser.TabIndex = 2;
             this.buttonParkCruiser.Text = "Причалить крейсер";
             this.buttonParkCruiser.UseVisualStyleBackColor = true;
@@ -74,9 +79,9 @@
             this.groupBox1.Controls.Add(this.LabelPlace);
             this.groupBox1.Controls.Add(this.maskedTextBoxNumberPlace);
             this.groupBox1.Controls.Add(this.labelTakeShip);
-            this.groupBox1.Location = new System.Drawing.Point(860, 144);
+            this.groupBox1.Location = new System.Drawing.Point(860, 382);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(110, 103);
+            this.groupBox1.Size = new System.Drawing.Size(121, 101);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -109,17 +114,67 @@
             // labelTakeShip
             // 
             this.labelTakeShip.AutoSize = true;
-            this.labelTakeShip.Location = new System.Drawing.Point(-3, 0);
+            this.labelTakeShip.Location = new System.Drawing.Point(0, 0);
             this.labelTakeShip.Name = "labelTakeShip";
             this.labelTakeShip.Size = new System.Drawing.Size(94, 13);
             this.labelTakeShip.TabIndex = 0;
             this.labelTakeShip.Text = "Забрать корабль";
+            // 
+            // listBoxParkings
+            // 
+            this.listBoxDocks.FormattingEnabled = true;
+            this.listBoxDocks.Location = new System.Drawing.Point(863, 109);
+            this.listBoxDocks.Name = "listBoxParkings";
+            this.listBoxDocks.Size = new System.Drawing.Size(118, 95);
+            this.listBoxDocks.TabIndex = 4;
+            this.listBoxDocks.SelectedIndexChanged += new System.EventHandler(this.listBoxParkings_SelectedIndexChanged);
+            // 
+            // labelParking
+            // 
+            this.labelParking.AutoSize = true;
+            this.labelParking.Location = new System.Drawing.Point(896, 9);
+            this.labelParking.Name = "labelParking";
+            this.labelParking.Size = new System.Drawing.Size(60, 13);
+            this.labelParking.TabIndex = 5;
+            this.labelParking.Text = "Парковки:";
+            // 
+            // textBoxNewLevelName
+            // 
+            this.textBoxNewLevelName.Location = new System.Drawing.Point(863, 34);
+            this.textBoxNewLevelName.Name = "textBoxNewLevelName";
+            this.textBoxNewLevelName.Size = new System.Drawing.Size(118, 20);
+            this.textBoxNewLevelName.TabIndex = 6;
+            // 
+            // buttonCreateParking
+            // 
+            this.buttonCreateParking.Location = new System.Drawing.Point(863, 60);
+            this.buttonCreateParking.Name = "buttonCreateParking";
+            this.buttonCreateParking.Size = new System.Drawing.Size(118, 35);
+            this.buttonCreateParking.TabIndex = 7;
+            this.buttonCreateParking.Text = "Добавить парковку";
+            this.buttonCreateParking.UseVisualStyleBackColor = true;
+            this.buttonCreateParking.Click += new System.EventHandler(this.buttonAddDocks_Click);
+            // 
+            // buttonDeleteParking
+            // 
+            this.buttonDeleteParking.Location = new System.Drawing.Point(863, 210);
+            this.buttonDeleteParking.Name = "buttonDeleteParking";
+            this.buttonDeleteParking.Size = new System.Drawing.Size(118, 35);
+            this.buttonDeleteParking.TabIndex = 8;
+            this.buttonDeleteParking.Text = "Удалить парковку";
+            this.buttonDeleteParking.UseVisualStyleBackColor = true;
+            this.buttonDeleteParking.Click += new System.EventHandler(this.buttonDelDocks_Click);
             // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.buttonDeleteParking);
+            this.Controls.Add(this.buttonCreateParking);
+            this.Controls.Add(this.textBoxNewLevelName);
+            this.Controls.Add(this.labelParking);
+            this.Controls.Add(this.listBoxDocks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonParkCruiser);
             this.Controls.Add(this.buttonParkMilShip);
@@ -130,6 +185,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -143,5 +199,10 @@
         private System.Windows.Forms.Button buttonTakeShip;
         private System.Windows.Forms.Label LabelPlace;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxNumberPlace;
+        private System.Windows.Forms.ListBox listBoxDocks;
+        private System.Windows.Forms.Label labelParking;
+        private System.Windows.Forms.TextBox textBoxNewLevelName;
+        private System.Windows.Forms.Button buttonCreateParking;
+        private System.Windows.Forms.Button buttonDeleteParking;
     }
 }
