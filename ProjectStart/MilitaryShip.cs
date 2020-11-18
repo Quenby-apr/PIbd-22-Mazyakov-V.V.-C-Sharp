@@ -17,6 +17,7 @@ namespace ProjectStart
         /// Высота отрисовки автомобиля
         /// </summary>
         protected readonly int shipHeight = 0;
+        protected readonly char separator = ';';
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -29,6 +30,17 @@ namespace ProjectStart
             Weight = weight;
             MainColor = mainColor;
         }
+        public MilitaryShip(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
+
         /// <summary>
         /// Конструкторс изменением размеров машины
         /// </summary>
@@ -126,6 +138,10 @@ namespace ProjectStart
                 g.FillRectangle(equip, _startPosX + 95, _startPosY - 50, 25, 25);
                 g.FillRectangle(equip, _startPosX + 107, _startPosY - 56, 3, 6);
             }
+        }
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

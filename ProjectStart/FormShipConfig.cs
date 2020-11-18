@@ -93,7 +93,7 @@ namespace ProjectStart
         /// <param name="e"></param>
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            if (sender as Control !=null)
+            if (sender as Control != null)
             {
                 ((Control)sender).DoDragDrop(((Control)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
             }
@@ -127,7 +127,7 @@ namespace ProjectStart
             {
                 ship.SetMainColor((Color)e.Data.GetData(typeof(Color)));
                 DrawShip();
-            }           
+            }
         }
         /// <summary>
         /// Принимаем дополнительный цвет

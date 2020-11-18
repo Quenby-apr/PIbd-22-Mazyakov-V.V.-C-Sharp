@@ -40,15 +40,22 @@
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.buttonCreateParking = new System.Windows.Forms.Button();
             this.buttonDeleteParking = new System.Windows.Forms.Button();
+            this.menuStripDocks = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialogDocks = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogDocks = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuStripDocks.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxParking
             // 
-            this.pictureBoxParking.Location = new System.Drawing.Point(1, -1);
+            this.pictureBoxParking.Location = new System.Drawing.Point(1, 27);
             this.pictureBoxParking.Name = "pictureBoxParking";
-            this.pictureBoxParking.Size = new System.Drawing.Size(853, 564);
+            this.pictureBoxParking.Size = new System.Drawing.Size(853, 536);
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
             // 
@@ -123,9 +130,9 @@
             this.labelParking.AutoSize = true;
             this.labelParking.Location = new System.Drawing.Point(896, 9);
             this.labelParking.Name = "labelParking";
-            this.labelParking.Size = new System.Drawing.Size(60, 13);
+            this.labelParking.Size = new System.Drawing.Size(37, 13);
             this.labelParking.TabIndex = 5;
-            this.labelParking.Text = "Парковки:";
+            this.labelParking.Text = "Доки:";
             // 
             // textBoxNewLevelName
             // 
@@ -154,6 +161,48 @@
             this.buttonDeleteParking.UseVisualStyleBackColor = true;
             this.buttonDeleteParking.Click += new System.EventHandler(this.buttonDelDocks_Click);
             // 
+            // menuStripDocks
+            // 
+            this.menuStripDocks.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStripDocks.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStripDocks.Location = new System.Drawing.Point(0, 0);
+            this.menuStripDocks.Name = "menuStripDocks";
+            this.menuStripDocks.Size = new System.Drawing.Size(984, 24);
+            this.menuStripDocks.TabIndex = 9;
+            this.menuStripDocks.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.загрузитьToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            // 
+            // saveFileDialogDocks
+            // 
+            this.saveFileDialogDocks.Filter = "«txt file | *.txt";
+            // 
+            // openFileDialogDocks
+            // 
+            this.openFileDialogDocks.Filter = "«txt file | *.txt";
+            // 
             // FormDocks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,11 +216,15 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonParkShip);
             this.Controls.Add(this.pictureBoxParking);
+            this.Controls.Add(this.menuStripDocks);
+            this.MainMenuStrip = this.menuStripDocks;
             this.Name = "FormDocks";
             this.Text = "FormDocks";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStripDocks.ResumeLayout(false);
+            this.menuStripDocks.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +244,11 @@
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Button buttonCreateParking;
         private System.Windows.Forms.Button buttonDeleteParking;
+        private System.Windows.Forms.MenuStrip menuStripDocks;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogDocks;
+        private System.Windows.Forms.OpenFileDialog openFileDialogDocks;
     }
 }
