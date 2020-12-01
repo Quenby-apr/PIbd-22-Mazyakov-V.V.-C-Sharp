@@ -1,4 +1,5 @@
 ﻿using System;
+using NLog;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,14 @@ namespace ProjectStart
         /// Объект от класса-парковки
         /// </summary>
         private readonly DocksCollection docksCollection;
+        private readonly Logger logger;
         public FormDocks()
         {
             InitializeComponent();
             docksCollection = new DocksCollection(pictureBoxParking.Width, pictureBoxParking.Height);
             Draw();
+            logger = LogManager.GetCurrentClassLogger();
+
         }
         private void ReloadLevels()
         {
@@ -62,8 +66,10 @@ namespace ProjectStart
             {
                 MessageBox.Show("Введите название дока", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn("название не введено");
                 return;
             }
+            logger.Info($"Добавили док {textBoxNewLevelName.Text}");
             docksCollection.AddDocks(textBoxNewLevelName.Text);
             ReloadLevels();
         }
@@ -79,6 +85,7 @@ namespace ProjectStart
                 if (MessageBox.Show($"Удалить док { listBoxDocks.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
            MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили док { listBoxDocks.SelectedItem.ToString()}");
                     docksCollection.DelDocks(textBoxNewLevelName.Text);
                     ReloadLevels();
                 }
@@ -100,13 +107,30 @@ namespace ProjectStart
         {
             if (car != null && listBoxDocks.SelectedIndex > -1)
             {
-                if ((docksCollection[listBoxDocks.SelectedItem.ToString()]) + car)
+                try
                 {
+                    if ((docksCollection[listBoxDocks.SelectedItem.ToString()]) + car)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен корабль {car}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("корабль не удалось причалить");
+                    }
                     Draw();
                 }
-                else
+                catch (DocksOverflowException ex)
                 {
-                    MessageBox.Show("Корабль не удалось причалить");
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                    logger.Warn("Переполнение");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка");
                 }
             }
         }
@@ -119,19 +143,37 @@ namespace ProjectStart
         {
             if (listBoxDocks.SelectedIndex > -1 && maskedTextBoxNumberPlace.Text != "")
             {
-                var ship = docksCollection[listBoxDocks.SelectedItem.ToString()] -
-               Convert.ToInt32(maskedTextBoxNumberPlace.Text);
-                if (ship != null)
+                try
                 {
-                    FormCruiser form = new FormCruiser();
-                    form.SetShip(ship);
-                    form.ShowDialog();
+                    var ship = docksCollection[listBoxDocks.SelectedItem.ToString()] -
+                    Convert.ToInt32(maskedTextBoxNumberPlace.Text);
+                    if (ship != null)
+                    {
+                        FormCruiser form = new FormCruiser();
+                        form.SetShip(ship);
+                        form.ShowDialog();
+                        logger.Info($"Изъят корабль {ship} с места{ textBoxNewLevelName.Text}");
+                    Draw();
+                    }
                 }
-                Draw();
+                catch (DocksNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                    logger.Warn("Не найдено");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка");
+                }
+
             }
         }
         private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на док { listBoxDocks.SelectedItem.ToString()}");
             Draw();
         }
 
@@ -139,16 +181,20 @@ namespace ProjectStart
         {
             if (saveFileDialogDocks.ShowDialog() == DialogResult.OK)
             {
-                if (docksCollection.SaveData(saveFileDialogDocks.FileName))
+                try
                 {
+                    docksCollection.SaveData(saveFileDialogDocks.FileName);
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialogDocks.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат",
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Неизвестная ошибка при сохранении");
                 }
+
             }
         }
 
@@ -156,18 +202,28 @@ namespace ProjectStart
         {
             if (openFileDialogDocks.ShowDialog() == DialogResult.OK)
             {
-                if (docksCollection.LoadData(openFileDialogDocks.FileName))
+                try
                 {
+                    docksCollection.LoadData(openFileDialogDocks.FileName);
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                    MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialogDocks.FileName);
                     ReloadLevels();
                     Draw();
                 }
-                else
+                catch (DocksOccupiedPlaceException ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
+                    logger.Warn("Занятое место");
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn("Занятое место");
+                }
+
             }
         }
     }

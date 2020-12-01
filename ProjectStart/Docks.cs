@@ -56,7 +56,7 @@ namespace ProjectStart
         {
             if (p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new DocksOverflowException();
             }
             p._places.Add(ship);
             return true;
@@ -72,7 +72,7 @@ namespace ProjectStart
         {
             if (index < -1 || index > p._places.Count)
             {
-                return null;
+                throw new DocksNotFoundException(index);
             }
             T ship = p._places[index];
             p._places.RemoveAt(index);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectStart
 {
-    class DocksCollection
+    class DocksCollection 
     {
         /// <summary>
         /// Словарь (хранилище) с парковками
@@ -76,7 +76,7 @@ namespace ProjectStart
                 return null;
             }
         }
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -108,14 +108,13 @@ namespace ProjectStart
                         }
                     }
                 }
-                return true;
             }
         }
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
             {
@@ -130,11 +129,10 @@ namespace ProjectStart
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new InvalidDataException("Неверный формат файла");
                 }
                 while ((line = sr.ReadLine()) != null)
                 {
-                    Console.WriteLine(line);
                     if (line.Contains("Docks"))
                     {
                         //начинаем новую парковку
@@ -157,10 +155,9 @@ namespace ProjectStart
                     var result = docksStages[key] + ship;
                     if (!result)
                     {
-                        return false;
+                        throw new IndexOutOfRangeException("Не удалось загрузить автомобиль на парковку");
                     }
                 }
-                return true;
             }
         }
     }
