@@ -24,7 +24,6 @@ namespace ProjectStart
             docksCollection = new DocksCollection(pictureBoxParking.Width, pictureBoxParking.Height);
             Draw();
             logger = LogManager.GetCurrentClassLogger();
-
         }
         private void ReloadLevels()
         {
@@ -168,7 +167,6 @@ namespace ProjectStart
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Неизвестная ошибка");
                 }
-
             }
         }
         private void listBoxParkings_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,7 +192,6 @@ namespace ProjectStart
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Неизвестная ошибка при сохранении");
                 }
-
             }
         }
 
