@@ -87,25 +87,20 @@ namespace ProjectStart
                 sw.WriteLine("DocksCollection");
                 foreach (var level in docksStages)
                 {
-                    sw.WriteLine($"Docks{separator}{ level.Key}");
-                    ITransport ship = null;
-                    for (int i = 0; (ship = level.Value.GetNext(i)) != null; i++)
+                    sw.WriteLine($"Docks{separator}{level.Key}");
+
+                    foreach (ITransport ship in level.Value)
                     {
-                        if (ship != null)
+                        if (ship.GetType().Name == "MilitaryShip")
                         {
-                            //если место не пустое
-                            //Записываем тип машины
-                            if (ship.GetType().Name == "MilitaryShip")
-                            {
-                                sw.Write($"MilitaryShip{separator}");
-                            }
-                            if (ship.GetType().Name == "Cruiser")
-                            {
-                                sw.Write($"Cruiser{separator}");
-                            }
-                            //Записываемые параметры
-                            sw.WriteLine(ship);
+                            sw.Write($"MilitaryShip{separator}");
                         }
+                        if (ship.GetType().Name == "Cruiser")
+                        {
+                            sw.Write($"Cruiser{separator}");
+                        }
+                        //Записываемые параметры
+                        sw.WriteLine(ship);
                     }
                 }
             }

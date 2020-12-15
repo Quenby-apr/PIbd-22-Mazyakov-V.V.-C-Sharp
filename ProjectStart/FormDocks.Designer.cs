@@ -46,6 +46,7 @@
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialogDocks = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogDocks = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStripDocks.SuspendLayout();
@@ -61,7 +62,7 @@
             // 
             // buttonParkShip
             // 
-            this.buttonParkShip.Location = new System.Drawing.Point(863, 286);
+            this.buttonParkShip.Location = new System.Drawing.Point(863, 328);
             this.buttonParkShip.Name = "buttonParkShip";
             this.buttonParkShip.Size = new System.Drawing.Size(118, 48);
             this.buttonParkShip.TabIndex = 1;
@@ -184,14 +185,14 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
@@ -203,11 +204,22 @@
             // 
             this.openFileDialogDocks.Filter = "«txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(863, 270);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(118, 41);
+            this.buttonSort.TabIndex = 10;
+            this.buttonSort.Text = "Сортировать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormDocks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonDeleteParking);
             this.Controls.Add(this.buttonCreateParking);
             this.Controls.Add(this.textBoxNewLevelName);
@@ -250,5 +262,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialogDocks;
         private System.Windows.Forms.OpenFileDialog openFileDialogDocks;
+        private System.Windows.Forms.Button buttonSort;
     }
 }

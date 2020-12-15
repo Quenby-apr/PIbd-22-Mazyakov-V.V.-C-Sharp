@@ -8,8 +8,8 @@ using System.Drawing;
 
 namespace ProjectStart
 {
-	class Cruiser: MilitaryShip
-	{
+    class Cruiser : MilitaryShip, IEquatable<Cruiser>
+    {
         public Color DopColor { private set; get; }
         public bool MissileSystem { private set; get; }
         /// <summary>
@@ -19,16 +19,16 @@ namespace ProjectStart
         /// <summary>
         /// Признак наличия зенитных установок
         /// </summary>
-        public bool  ControlSystem { private set; get; }
+        public bool ControlSystem { private set; get; }
         /// Признак наличия систем наведения
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес </param>
         /// <param name="mainColor">Основной цвет </param>
         /// <param name="dopColor">Дополнительный цвет</param>
-        
-        public Cruiser(int maxSpeed, float weight, Color mainColor, Color dopColor, 
+
+        public Cruiser(int maxSpeed, float weight, Color mainColor, Color dopColor,
         bool missileSystem, bool antiaircraftComplex, bool controlSystem) :
-            base(maxSpeed, weight, mainColor, 200,0)
+            base(maxSpeed, weight, mainColor, 200, 0)
         {
             DopColor = dopColor;
             MissileSystem = missileSystem;
@@ -96,6 +96,62 @@ namespace ProjectStart
         {
             return
            $"{base.ToString()}{separator}{DopColor.Name}{separator}{MissileSystem}{separator}{AntiaircraftComplex}{separator}{ControlSystem}";
+        }
+        public bool Equals(Cruiser other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (MissileSystem != other.MissileSystem)
+            {
+                return false;
+            }
+            if (AntiaircraftComplex != other.AntiaircraftComplex)
+            {
+                return false;
+            }
+            if (ControlSystem != other.ControlSystem)
+            {
+                return false;
+            }
+            return true;
+            // Реализовать метод сравнения для дочернего класса
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Cruiser carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
         }
     }
 }
