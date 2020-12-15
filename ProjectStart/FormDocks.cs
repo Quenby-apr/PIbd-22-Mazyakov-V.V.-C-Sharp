@@ -220,6 +220,7 @@ namespace ProjectStart
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn("Занятое место");
                 }
+
             }
         }
         private void buttonSort_Click(object sender, EventArgs e) {
